@@ -11,13 +11,13 @@ export function sendContactFormMessage (contactForm) {
       return null
     })
 }
-// TODO: add error handling
 
 export function getFaqs () {
   return request.get(faqUrl)
     .then(res => {
       return res.body
     })
+  .catch(e => console.log(e))
 }
 
 export function getFaqBySearchString (search) {
@@ -26,6 +26,7 @@ export function getFaqBySearchString (search) {
     .then(response => {
       return response.body
     })
+  .catch(e => console.log(e))
 }
 
 export function updateUserProfile (username, updates) {
@@ -65,8 +66,6 @@ export function createEvent (event) {
     .catch(logError)
 }
 
-// error function
-
 function logError (err) {
   if (err.message === 'Forbidden') {
     throw new Error('You cannot do that')
@@ -79,8 +78,6 @@ function logError (err) {
     throw err
   }
 }
-
-// pets data
 
 export function getPetsData (username) {
   return request
